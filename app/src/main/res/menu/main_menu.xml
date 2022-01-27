@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cnb_unselectedColor="@color/black">
+
+    <item
+        android:id="@+id/list"
+        android:icon="@drawable/ic_list"
+        android:title="@string/list"
+        app:cnb_iconColor="@color/white" />
+
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/ic_add"
+        android:title="@string/create"
+        app:cnb_iconColor="@color/white" />
+
+    <item
+        android:id="@+id/sold"
+        android:icon="@drawable/ic_sold"
+        android:title="@string/sold"
+        app:cnb_iconColor="@color/white" />
+
+</menu>

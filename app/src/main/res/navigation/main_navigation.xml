@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.ketgomvvm.ui.view.SoldFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_sold">
+        <action
+            android:id="@+id/action_homeFragment_to_createProductFragment"
+            app:destination="@id/createProductFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listingFragment"
+            app:destination="@id/listingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listingFragment"
+        android:name="com.example.ketgomvvm.ui.view.ListingFragment"
+        android:label="fragment_listing"
+        tools:layout="@layout/fragment_listing">
+        <action
+            android:id="@+id/action_listingFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment">
+        </action>
+        <action
+            android:id="@+id/action_listingFragment_self"
+            app:destination="@id/listingFragment" />
+        <action
+            android:id="@+id/action_listingFragment_to_createProductFragment"
+            app:destination="@id/createProductFragment" />
+        <action
+            android:id="@+id/action_listingFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createProductFragment"
+        android:name="com.example.ketgomvvm.ui.view.ProductCreateFragment"
+        android:label="fragment_create_product"
+        tools:layout="@layout/fragment_create_product">
+        <action
+            android:id="@+id/action_createProductFragment_to_listingFragment"
+            app:destination="@id/listingFragment" />
+        <action
+            android:id="@+id/action_createProductFragment_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.ketgomvvm.ui.view.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="currentProduct"
+            app:argType="com.example.ketgomvvm.data.model.ProductModel" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_editProductFragment"
+            app:destination="@id/editProductFragment">
+            <argument
+                android:name="currentProduct"
+                app:argType="com.example.ketgomvvm.data.model.ProductModel" />
+        </action>
+        <action
+            android:id="@+id/action_productDetailFragment_to_listingFragment"
+            app:destination="@id/listingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProductFragment"
+        android:name="com.example.ketgomvvm.ui.view.ProductUpdateFragment"
+        android:label="fragment_edit_product"
+        tools:layout="@layout/fragment_edit_product">
+        <action
+            android:id="@+id/action_editProductFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_editProductFragment_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
+        <action
+            android:id="@+id/action_editProductFragment_to_listingFragment"
+            app:destination="@id/listingFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/mapsActivity"
+        android:name="com.example.ketgomvvm.ui.view.MapsActivity"
+        android:label="MapsActivity" />
+</navigation>
