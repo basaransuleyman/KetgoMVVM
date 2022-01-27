@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.ProductCreateFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:hint="@string/title"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/teal_200"
+        app:hintTextColor="@color/teal_200"
+        app:layout_constraintTop_toBottomOf="@+id/ivCreateProduct"
+        tools:layout_editor_absoluteX="24dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCreateTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_200" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:hint="@string/price"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/teal_200"
+        app:hintTextColor="@color/teal_200"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        tools:layout_editor_absoluteX="24dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCreatePrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/teal_200" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:hint="@string/description"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/teal_200"
+        app:hintTextColor="@color/teal_200"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        tools:layout_editor_absoluteX="24dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCreateDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_200" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvCreateProductMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/create_product"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivClose"
+        app:layout_constraintTop_toBottomOf="@+id/ivClose" />
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/ivCreateProduct"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/ic_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCreateProductMessage"
+        tools:ignore="ContentDescription" />
+
+    <CheckBox
+        android:id="@+id/cbCreateNew"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/a_new"
+        app:layout_constraintEnd_toStartOf="@+id/cbCreateLikeNew"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+    <CheckBox
+        android:id="@+id/cbCreateLikeNew"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/like_new"
+        app:layout_constraintEnd_toStartOf="@+id/cbCreateGood"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cbCreateNew"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+    <CheckBox
+        android:id="@+id/cbCreateGood"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/good"
+        app:layout_constraintEnd_toStartOf="@+id/cbCreateFair"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cbCreateLikeNew"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+    <CheckBox
+        android:id="@+id/cbCreateFair"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/fair"
+        app:layout_constraintEnd_toStartOf="@+id/cbCreatePoor"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cbCreateGood"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+    <CheckBox
+        android:id="@+id/cbCreatePoor"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/poor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cbCreateFair"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiLocation"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:hint="@string/select_location"
+        app:endIconMode="custom"
+        app:endIconTint="@color/teal_200"
+        app:hintTextColor="@color/teal_200"
+        app:layout_constraintTop_toBottomOf="@+id/cbCreateFair"
+        tools:layout_editor_absoluteX="24dp">
+
+        <EditText
+            android:id="@+id/etCreateLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/click_for_change"
+            app:endIconMode="dropdown_menu"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="446dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Switch
+        android:id="@+id/switchCreateFree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/give_it_away_for_free"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiLocation"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchCreateFree" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
