@@ -1,5 +1,6 @@
 package com.example.ketgomvvm.ui.viewModel
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +9,8 @@ import com.example.ketgomvvm.data.repository.ProductRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,6 +18,8 @@ class ProductUpdateViewModel @Inject constructor(
     var repository: ProductRepositoryInterface
 ) : ViewModel() {
 
+    @SuppressLint("SimpleDateFormat")
+    val dateFormat = SimpleDateFormat(ProductCreateViewModel.DATE_FORMAT)
     val noteImageUrl = MutableLiveData<String>()
 
     fun updateProduct(
@@ -33,6 +38,7 @@ class ProductUpdateViewModel @Inject constructor(
             productStatus = productStatus,
             sellingLocation = sellingLocation,
             productImage = productImage,
+            createdDate = dateFormat.format(Date()),
             id = productId
         )
         viewModelScope.launch(Dispatchers.IO) {
@@ -46,4 +52,7 @@ class ProductUpdateViewModel @Inject constructor(
         }
     }
 
+    companion object {
+        const val DATE_FORMAT = "dd/M/yyyy"
+    }
 }

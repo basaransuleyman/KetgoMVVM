@@ -36,7 +36,7 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
         var upCount = 0
 
         holder.binding.product = currentItem
-
+        holder.binding.tvProductCreatedDate.text  = currentItem.createdDate
         Glide.with(holder.itemView.context).load(currentItem.productImage.toString())
             .into(holder.binding.ivProduct)
 

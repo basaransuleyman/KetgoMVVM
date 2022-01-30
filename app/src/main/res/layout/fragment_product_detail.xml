@@ -90,9 +90,9 @@
         android:text=""
         android:textSize="12sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/ivCreatedDate"
+        app:layout_constraintBottom_toBottomOf="@+id/ivUp"
         app:layout_constraintStart_toEndOf="@+id/ivCreatedDate"
-        app:layout_constraintTop_toTopOf="@+id/ivCreatedDate" />
+        app:layout_constraintTop_toTopOf="@+id/ivUp" />
 
     <TextView
         android:id="@+id/tvDetailDescription"
@@ -143,9 +143,9 @@
         android:text=""
         android:textSize="12sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/ivUp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivCreatedDate"
         app:layout_constraintStart_toEndOf="@+id/ivUp"
-        app:layout_constraintTop_toTopOf="@+id/ivUp" />
+        app:layout_constraintTop_toTopOf="@+id/ivCreatedDate" />
 
     <View
         android:id="@+id/divider"

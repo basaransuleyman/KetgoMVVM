@@ -47,12 +47,16 @@ class ProductCreateFragment : Fragment() {
                 productStatus = checkBoxControl(),
                 sellingLocation = "asd"
             )
-            Toast.makeText(requireContext(), "Success to add db", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Created ${_binding.etCreateTitle.text.toString()}",
+                Toast.LENGTH_SHORT
+            ).show()
             findNavController().navigate(R.id.action_createProductFragment_to_listingFragment)
         }
     }
 
-    private fun openGoogleMaps(){
+    private fun openGoogleMaps() {
         _binding.etCreateLocation.setOnClickListener {
             findNavController().navigate(R.id.action_createProductFragment_to_mapsActivity)
         }

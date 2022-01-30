@@ -47,6 +47,11 @@ class ProductUpdateFragment : Fragment() {
     private fun clickUpdateProduct() {
         _binding.btnSave.setOnClickListener {
             updateProduct()
+            Toast.makeText(
+                context,
+                "Updated  ${args.currentProduct.productName}",
+                Toast.LENGTH_LONG
+            ).show()
             findNavController().navigate(R.id.action_editProductFragment_to_listingFragment)
         }
     }
@@ -54,6 +59,13 @@ class ProductUpdateFragment : Fragment() {
     private fun clickDeleteProductButton() {
         _binding.btnDelete.setOnClickListener {
             _viewModel.deleteProductById(args.currentProduct.id)
+            Toast.makeText(
+                context,
+                "Delete Success ${args.currentProduct.productName}",
+                Toast.LENGTH_LONG
+            ).show()
+            findNavController().navigate(R.id.action_editProductFragment_to_listingFragment)
+
         }
     }
 
