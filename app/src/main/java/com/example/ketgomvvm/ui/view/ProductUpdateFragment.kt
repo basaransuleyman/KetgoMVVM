@@ -31,13 +31,6 @@ class ProductUpdateFragment : Fragment() {
     private val args by navArgs<ProductDetailFragmentArgs>()
     private val _viewModel by viewModels<ProductUpdateViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,23 +68,21 @@ class ProductUpdateFragment : Fragment() {
             etUpdateTitle.setText(args.currentProduct.productName)
             etUpdatePrice.setText(args.currentProduct.productPrice.toString())
             etUpdateDescription.setText(args.currentProduct.productDescription)
-            etUpdateLocatin.setText(args.currentProduct.sellingLocation)
+            etUpdateLocation.setText(args.currentProduct.sellingLocation)
             Glide.with(requireContext()).load(args.currentProduct.productImage)
                 .into(_binding.ivUpdateProduct)
         }
     }
 
     private fun updateProduct() {
-        with(_binding) {
-            _viewModel.updateProduct(
-                productId = args.currentProduct.id,
-                productName = _binding.etUpdateTitle.text.toString(),
-                productPrice = _binding.etUpdatePrice.text.toString().toInt(),
-                productDescription = _binding.etUpdateDescription.text.toString(),
-                sellingLocation = _binding.etUpdateLocatin.text.toString(),
-                productImage = _viewModel.noteImageUrl.value
-            )
-        }
+        _viewModel.updateProduct(
+            productId = args.currentProduct.id,
+            productName = _binding.etUpdateTitle.text.toString(),
+            productPrice = _binding.etUpdatePrice.text.toString().toInt(),
+            productDescription = _binding.etUpdateDescription.text.toString(),
+            sellingLocation = _binding.etUpdateLocation.text.toString(),
+            productImage = _viewModel.noteImageUrl.value
+        )
     }
 
     private fun updateNoteImage(uri: Uri?) {

@@ -3,23 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/listingFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.ketgomvvm.ui.view.SoldFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_sold">
-        <action
-            android:id="@+id/action_homeFragment_to_createProductFragment"
-            app:destination="@id/createProductFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_listingFragment"
-            app:destination="@id/listingFragment" />
-        <action
-            android:id="@+id/action_homeFragment_self"
-            app:destination="@id/homeFragment" />
-    </fragment>
     <fragment
         android:id="@+id/listingFragment"
         android:name="com.example.ketgomvvm.ui.view.ListingFragment"
@@ -35,9 +20,6 @@
         <action
             android:id="@+id/action_listingFragment_to_createProductFragment"
             app:destination="@id/createProductFragment" />
-        <action
-            android:id="@+id/action_listingFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/createProductFragment"

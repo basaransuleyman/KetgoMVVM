@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,18 +17,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.ArrayList
 
 @AndroidEntryPoint
-class ListingFragment : BaseFragment() {
+class ListingFragment : Fragment() {
 
     private lateinit var _binding: FragmentListingBinding
     private lateinit var _productAdapter: ProductListingAdapter
     private val _productArrayList: ArrayList<ProductModel> = ArrayList()
     private val _viewModel by viewModels<ProductListingViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,16 +44,14 @@ class ListingFragment : BaseFragment() {
     }
 
     private fun readNote() {
-        _viewModel.getAllProducts.observe(viewLifecycleOwner, { products ->
+        _viewModel.getAllProducts.observe(viewLifecycleOwner) { products ->
             _productAdapter.setNotes(products)
-        })
+        }
     }
 
     private fun bottomTabNavigation() {
         _binding.cnbTabNav.setOnItemSelectedListener {
             when (it) {
-                R.id.sold -> Navigation.findNavController(_binding.root)
-                    .navigate(ListingFragmentDirections.actionListingFragmentToHomeFragment())
                 R.id.add -> Navigation.findNavController(_binding.root)
                     .navigate(ListingFragmentDirections.actionListingFragmentToCreateProductFragment())
                 R.id.list -> Navigation.findNavController(_binding.root)

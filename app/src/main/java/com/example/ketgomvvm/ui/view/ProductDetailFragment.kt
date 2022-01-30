@@ -24,13 +24,6 @@ class ProductDetailFragment : Fragment() {
     private lateinit var _binding: FragmentProductDetailBinding
     private val args by navArgs<ProductDetailFragmentArgs>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +44,6 @@ class ProductDetailFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun putBindingData() {
         with(_binding) {
-
             tvDetailProduct.text = args.currentProduct.productName
             tvDetailDescription.text = args.currentProduct.productDescription
             tvCreatedDate.text = args.currentProduct.createdDate.toString()

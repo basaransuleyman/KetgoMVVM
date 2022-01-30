@@ -15,10 +15,4 @@
         android:title="@string/create"
         app:cnb_iconColor="@color/white" />
 
-    <item
-        android:id="@+id/sold"
-        android:icon="@drawable/ic_sold"
-        android:title="@string/sold"
-        app:cnb_iconColor="@color/white" />
-
 </menu>

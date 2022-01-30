@@ -23,12 +23,6 @@ class ProductCreateFragment : Fragment() {
     private lateinit var _binding: FragmentCreateProductBinding
     private val _viewModel by viewModels<ProductCreateViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
