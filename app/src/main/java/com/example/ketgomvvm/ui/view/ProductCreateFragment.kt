@@ -37,6 +37,7 @@ class ProductCreateFragment : Fragment() {
         closeProductCreateFragment()
         addImage()
         saveProduct()
+        openGoogleMaps()
         return _binding.root
     }
 
@@ -54,6 +55,12 @@ class ProductCreateFragment : Fragment() {
             )
             Toast.makeText(requireContext(), "Success to add db", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_createProductFragment_to_listingFragment)
+        }
+    }
+
+    private fun openGoogleMaps(){
+        _binding.etCreateLocation.setOnClickListener {
+            findNavController().navigate(R.id.action_createProductFragment_to_mapsActivity)
         }
     }
 

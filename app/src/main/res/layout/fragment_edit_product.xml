@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/edit_product"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/ivClose"
         app:layout_constraintTop_toBottomOf="@+id/ivClose" />
@@ -116,7 +116,7 @@
         tools:layout_editor_absoluteX="24dp">
 
         <EditText
-            android:id="@+id/etUpdateLocatin"
+            android:id="@+id/etUpdateLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -126,17 +126,6 @@
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="446dp" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Switch
-        android:id="@+id/switchUpdateFree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/give_it_away_for_free"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiLocation"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
         android:id="@+id/btnSave"
@@ -148,7 +137,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btnDelete"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchUpdateFree" />
+        app:layout_constraintTop_toBottomOf="@+id/tiLocation" />
 
     <Button
         android:id="@+id/btnDelete"
@@ -160,6 +149,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnSave"
-        app:layout_constraintTop_toBottomOf="@+id/switchUpdateFree" />
+        app:layout_constraintTop_toBottomOf="@+id/tiLocation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

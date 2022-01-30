@@ -25,9 +25,6 @@ data class ProductModel(
     @ColumnInfo(name = "sellingLocation")
     val sellingLocation: String,
 
-    @ColumnInfo(name = "isFree")
-    val isFree: Boolean? = null,
-
     @ColumnInfo(name = "productImage")
     val productImage: String? = null,
 

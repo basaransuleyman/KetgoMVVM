@@ -181,17 +181,6 @@
             tools:layout_editor_absoluteY="446dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Switch
-        android:id="@+id/switchCreateFree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/give_it_away_for_free"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiLocation"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
-
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
@@ -199,9 +188,8 @@
         android:layout_marginTop="24dp"
         android:text="@string/create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchCreateFree" />
+        app:layout_constraintTop_toBottomOf="@+id/tiLocation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
