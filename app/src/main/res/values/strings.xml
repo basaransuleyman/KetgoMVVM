@@ -7,7 +7,7 @@
     <string name="list">List</string>
     <string name="sold">Sold</string>
     <string name="set_location">Set Location</string>
-    <string name="change_location">Change Location</string>
+    <string name="your_location">Your Location</string>
     <string name="empty_string" />
     <string name="new_product">New</string>
     <string name="mark_as_sold">Mark as Sold</string>

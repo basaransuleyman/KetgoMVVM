@@ -2,6 +2,7 @@ package com.example.ketgomvvm.ui.view
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -46,8 +48,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     private fun markerOnMap(currentLatLong: LatLng) {
         val markerOptions = MarkerOptions().position(currentLatLong)
+            .snippet(getAddress(currentLatLong.latitude, currentLatLong.longitude))
+
         markerOptions.title("$currentLatLong")
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLatLong))
         mMap.addMarker(markerOptions)
+
+        binding.btnSaveLocation.setOnClickListener {
+            binding.tvAddress.text = getAddress(currentLatLong.latitude, currentLatLong.longitude)
+        }
 
     }
 
@@ -71,7 +80,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
         mMap.isMyLocationEnabled = true
         fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-            location.let {
+            location?.let {
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude, location.longitude)
                 markerOnMap(currentLatLong)
@@ -81,6 +90,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 startLongitude = location.longitude
             }
         }
+    }
+
+    private fun getAddress(lat: Double, lng: Double): String? {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        val address = geocoder.getFromLocation(lat, lng, 1)
+        return address[0].getAddressLine(0).toString()
     }
 
     override fun onMarkerClick(p0: Marker) = false
