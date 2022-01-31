@@ -33,24 +33,19 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
     override fun onBindViewHolder(holder: ProductListHolder, position: Int) {
 
         val currentItem = productList[position]
-        var upCount = 0
 
         holder.binding.product = currentItem
-        holder.binding.tvProductCreatedDate.text  = currentItem.createdDate
         Glide.with(holder.itemView.context).load(currentItem.productImage.toString())
             .into(holder.binding.ivProduct)
 
         val action =
             ListingFragmentDirections.actionListingFragmentToProductDetailFragment(currentItem)
+
         holder.itemView.setOnClickListener {
             holder.itemView.findNavController().navigate(action)
         }
 
-        holder.binding.ivUp.setOnClickListener {
-            upCount++
-            holder.binding.tvUp.isVisible = true
-            holder.binding.tvUp.text = "$upCount"
-        }
+        upCount(holder)
     }
 
     override fun getItemCount(): Int {
@@ -65,6 +60,16 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
     fun setNotes(product: List<ProductModel>) {
         this.productList = product
         notifyDataSetChanged()
+    }
+
+    private fun upCount(holder: ProductListHolder) {
+        var upCount = 0
+
+        holder.binding.ivUp.setOnClickListener {
+            upCount++
+            holder.binding.tvUp.isVisible = true
+            holder.binding.tvUp.text = "$upCount"
+        }
     }
 
 }

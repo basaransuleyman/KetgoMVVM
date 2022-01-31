@@ -11,9 +11,6 @@ import javax.inject.Inject
 class ProductListingViewModel @Inject constructor(var repository: ProductRepositoryInterface) :
     ViewModel() {
 
-    val getAllProducts: LiveData<List<ProductModel>>
+    val getAllProducts: LiveData<List<ProductModel>> = repository.getAllProducts()
 
-    init {
-        getAllProducts = repository.getAllProducts()
-    }
 }

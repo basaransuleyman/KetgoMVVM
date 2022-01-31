@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/ivUpdateProduct"
-        android:layout_width="match_parent"
+        android:layout_width="500dp"
         android:layout_height="200dp"
         android:src="@drawable/ic_image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="@string/empty_string"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivUpdateProduct" />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/empty_string"
-        android:textSize="18sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tvDetailPrice"
         app:layout_constraintTop_toBottomOf="@+id/tvDetailPrice" />
@@ -76,33 +76,31 @@
         android:id="@+id/ivUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="100dp"
         android:src="@drawable/ic_up"
-        app:layout_constraintStart_toStartOf="@+id/ivCreatedDate"
-        app:layout_constraintTop_toBottomOf="@+id/ivCreatedDate"
+        app:layout_constraintStart_toEndOf="@+id/ivCreatedDate"
+        app:layout_constraintTop_toTopOf="@+id/ivCreatedDate"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tvDetailsUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
         android:text=""
         android:textSize="12sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/ivUp"
-        app:layout_constraintStart_toEndOf="@+id/ivCreatedDate"
+        app:layout_constraintStart_toEndOf="@+id/ivUp"
         app:layout_constraintTop_toTopOf="@+id/ivUp" />
 
     <TextView
         android:id="@+id/tvDetailDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:text="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="@+id/tvDetailProduct"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCreatedDate" />
 
     <TextView
@@ -111,6 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:textSize="14sp"
         android:text=""
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/ivUp"
@@ -121,6 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textSize="14sp"
         android:text=""
         app:layout_constraintStart_toStartOf="@+id/tvDetailCondition"
         app:layout_constraintTop_toBottomOf="@+id/tvDetailCondition" />
@@ -139,12 +139,11 @@
         android:id="@+id/tvCreatedDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
         android:text=""
         android:textSize="12sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/ivCreatedDate"
-        app:layout_constraintStart_toEndOf="@+id/ivUp"
+        app:layout_constraintStart_toEndOf="@+id/ivCreatedDate"
         app:layout_constraintTop_toTopOf="@+id/ivCreatedDate" />
 
     <View
