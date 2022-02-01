@@ -175,7 +175,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/click_for_change"
+            android:hint=""
             app:endIconMode="dropdown_menu"
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="446dp" />

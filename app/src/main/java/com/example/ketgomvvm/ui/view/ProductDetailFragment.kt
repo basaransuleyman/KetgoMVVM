@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.asLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.ketgomvvm.MainActivity
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentProductDetailBinding
+import com.example.ketgomvvm.ui.datastore.ProductManager
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -48,8 +50,9 @@ class ProductDetailFragment : Fragment() {
             tvDetailDescription.text = args.currentProduct.productDescription
             tvCreatedDate.text = args.currentProduct.createdDate.toString()
             tvDetailPrice.text = args.currentProduct.productPrice.toString() + " ₺"
+            tvDetailLocation.text = args.currentProduct.sellingLocation
             tvDetailCondition.text = args.currentProduct.productStatus
-            tvDetailsUp.text =  args.currentProduct.upCount.toString()
+            tvDetailsUp.text = args.currentProduct.upCount.toString()
             Glide.with(requireContext()).load(args.currentProduct.productImage)
                 .into(_binding.ivUpdateProduct)
         }

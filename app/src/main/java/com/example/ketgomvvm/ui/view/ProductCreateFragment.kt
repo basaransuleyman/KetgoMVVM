@@ -10,10 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentCreateProductBinding
+import com.example.ketgomvvm.ui.datastore.ProductManager
 import com.example.ketgomvvm.ui.viewModel.ProductCreateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,16 +24,20 @@ class ProductCreateFragment : Fragment() {
 
     private lateinit var _binding: FragmentCreateProductBinding
     private val _viewModel by viewModels<ProductCreateViewModel>()
+    private lateinit var _productManager: ProductManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCreateProductBinding.inflate(inflater, container, false)
+        _productManager = ProductManager(requireContext())
+
         closeProductCreateFragment()
         addImage()
         saveProduct()
         openGoogleMaps()
+        observeFromDatastore()
         return _binding.root
     }
 
@@ -45,7 +51,7 @@ class ProductCreateFragment : Fragment() {
                 productDescription = _binding.etCreateDescription.text.toString(),
                 productImage = _viewModel.noteImageUrl.value,
                 productStatus = checkBoxControl(),
-                sellingLocation = "asd"
+                sellingLocation = _binding.etCreateLocation.text.toString()
             )
             Toast.makeText(
                 requireContext(),
@@ -54,6 +60,15 @@ class ProductCreateFragment : Fragment() {
             ).show()
             findNavController().navigate(R.id.action_createProductFragment_to_listingFragment)
         }
+    }
+
+    private fun observeFromDatastore() {
+        _productManager.productSellingLocationFlow.asLiveData()
+            .observe(viewLifecycleOwner) { location ->
+                location?.let {
+                    _binding.etCreateLocation.setText(location)
+                }
+            }
     }
 
     private fun openGoogleMaps() {
