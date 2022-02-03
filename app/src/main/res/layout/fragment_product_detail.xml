@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/empty_string"
-        android:textSize="28sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tvDetailPrice"
         app:layout_constraintTop_toBottomOf="@+id/tvDetailPrice" />
@@ -120,20 +120,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="start"
+        android:layout_marginStart="12dp"
+        android:textStyle="bold"
         android:text=""
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/divider"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailCondition" />
-
-    <Button
-        android:id="@+id/btnSold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/mark_as_sold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailCondition" />
 
     <TextView
         android:id="@+id/tvCreatedDate"

@@ -57,7 +57,7 @@ class ProductUpdateFragment : Fragment() {
     }
 
     private fun clickDeleteProductButton() {
-        _binding.btnDelete.setOnClickListener {
+        _binding.ivDelete.setOnClickListener {
             _viewModel.deleteProductById(args.currentProduct.id)
             Toast.makeText(
                 context,
