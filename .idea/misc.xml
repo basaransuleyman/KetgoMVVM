@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MSI/StudioProjects/KetgoMVVM/app/src/main/res/drawable/ic_sold.xml" value="0.1885" />
+        <entry key="..\:/Users/MSI/StudioProjects/KetgoMVVM/app/src/main/res/drawable/ic_sold_out.xml" value="0.1885" />
         <entry key="..\:/Users/MSI/StudioProjects/KetgoMVVM/app/src/main/res/layout/activity_maps.xml" value="0.33" />
         <entry key="..\:/Users/MSI/StudioProjects/KetgoMVVM/app/src/main/res/layout/fragment_create_product.xml" value="0.33" />
         <entry key="..\:/Users/MSI/StudioProjects/KetgoMVVM/app/src/main/res/layout/fragment_edit_product.xml" value="0.36666666666666664" />

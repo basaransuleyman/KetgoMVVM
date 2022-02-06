@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -17,6 +19,7 @@ import com.example.ketgomvvm.MainActivity
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentProductDetailBinding
 import com.example.ketgomvvm.ui.datastore.ProductManager
+import com.example.ketgomvvm.ui.viewModel.ProductUpdateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -25,6 +28,7 @@ class ProductDetailFragment : Fragment() {
 
     private lateinit var _binding: FragmentProductDetailBinding
     private val args by navArgs<ProductDetailFragmentArgs>()
+    private val _viewModel by viewModels<ProductUpdateViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +38,7 @@ class ProductDetailFragment : Fragment() {
         putBindingData()
         clickUpdateButton()
         closeProductDetailFragment()
+        clickedThumbsUp()
         return _binding.root
     }
 
@@ -55,6 +60,19 @@ class ProductDetailFragment : Fragment() {
             tvDetailsUp.text = args.currentProduct.upCount.toString()
             Glide.with(requireContext()).load(args.currentProduct.productImage)
                 .into(_binding.ivUpdateProduct)
+        }
+    }
+
+    private fun clickedThumbsUp() {
+        var upCount = 0
+        _binding.ivUp.setOnClickListener {
+            upCount++
+            _binding.tvDetailsUp.isVisible = true
+            _binding.tvDetailsUp.text = "$upCount"
+            _viewModel.updateProductById(
+                id = args.currentProduct.id!!,
+                upCount = _binding.tvDetailsUp.text.toString().toInt()
+            )
         }
     }
 

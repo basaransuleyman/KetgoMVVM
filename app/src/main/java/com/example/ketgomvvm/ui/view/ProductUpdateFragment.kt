@@ -41,7 +41,15 @@ class ProductUpdateFragment : Fragment() {
         clickDeleteProductButton()
         clickUpdateProduct()
         updateImage()
+        makeAsSold()
         return _binding.root
+    }
+
+    private fun makeAsSold() {
+        _binding.btnSold.setOnClickListener {
+            _viewModel.updateProductById(id = args.currentProduct.id!!, isSold = true)
+            findNavController().navigate(R.id.action_editProductFragment_to_listingFragment)
+        }
     }
 
     private fun clickUpdateProduct() {
@@ -58,7 +66,7 @@ class ProductUpdateFragment : Fragment() {
 
     private fun clickDeleteProductButton() {
         _binding.ivDelete.setOnClickListener {
-            _viewModel.deleteProductById(args.currentProduct.id)
+            _viewModel.deleteProductById(args.currentProduct.id!!)
             Toast.makeText(
                 context,
                 "Delete Success ${args.currentProduct.productName}",
@@ -88,7 +96,7 @@ class ProductUpdateFragment : Fragment() {
 
     private fun updateProduct() {
         _viewModel.updateProduct(
-            productId = args.currentProduct.id,
+            productId = args.currentProduct.id!!,
             productName = _binding.etUpdateTitle.text.toString(),
             productPrice = _binding.etUpdatePrice.text.toString().toInt(),
             productDescription = _binding.etUpdateDescription.text.toString(),

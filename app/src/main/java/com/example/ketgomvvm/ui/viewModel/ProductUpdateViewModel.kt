@@ -52,6 +52,12 @@ class ProductUpdateViewModel @Inject constructor(
         }
     }
 
+    fun updateProductById(id: Int, isSold: Boolean? = false, upCount: Int? = 0) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateProductById(id, isSold, upCount)
+        }
+    }
+
     companion object {
         const val DATE_FORMAT = "dd/M/yyyy"
     }

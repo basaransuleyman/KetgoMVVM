@@ -14,4 +14,5 @@ interface ProductRepositoryInterface {
 
     suspend fun deleteProductById(id: Int)
 
+    suspend fun updateProductById(id: Int, isSold: Boolean? = false,upCount:Int?)
 }

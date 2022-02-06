@@ -24,6 +24,11 @@ class ProductRepository @Inject constructor(
     override suspend fun deleteProductById(id: Int) {
         return productDao.deleteProductById(id)
     }
+
+    override suspend fun updateProductById(id: Int, isSold: Boolean?, upCount: Int?) {
+        return productDao.updateProductById(id, isSold, upCount)
+    }
+
 }
 
 

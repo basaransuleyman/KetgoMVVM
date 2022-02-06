@@ -11,10 +11,10 @@ import kotlinx.android.parcel.Parcelize
 data class ProductModel(
 
     @ColumnInfo(name = "productName")
-    val productName: String,
+    val productName: String? = null,
 
     @ColumnInfo(name = "productPrice")
-    val productPrice: Int,
+    val productPrice: Int? = null,
 
     @ColumnInfo(name = "productDescription")
     val productDescription: String? = null,
@@ -23,7 +23,7 @@ data class ProductModel(
     val productStatus: String? = null,
 
     @ColumnInfo(name = "sellingLocation")
-    val sellingLocation: String,
+    val sellingLocation: String? = null,
 
     @ColumnInfo(name = "productImage")
     val productImage: String? = null,
@@ -33,5 +33,8 @@ data class ProductModel(
 
     @ColumnInfo(name = "upCount")
     var upCount: Int? = 0,
-    @PrimaryKey(autoGenerate = true) val id: Int = 0
+
+    @ColumnInfo(name = "isSold")
+    var isSold: Boolean? = false,
+    @PrimaryKey(autoGenerate = true) val id: Int? = 0
 ) : Parcelable

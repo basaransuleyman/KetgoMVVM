@@ -17,5 +17,8 @@ interface ProductDao {
 
     @Update
     suspend fun updateProduct(product: ProductModel)
+
+    @Query("UPDATE products_table SET isSold= :isSold,upCount= :upCount WHERE id= :id ")
+    suspend fun updateProductById(id: Int, isSold: Boolean?, upCount: Int?)
 }
 

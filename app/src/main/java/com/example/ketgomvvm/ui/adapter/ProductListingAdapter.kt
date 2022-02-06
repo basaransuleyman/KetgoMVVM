@@ -45,7 +45,9 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
             holder.itemView.findNavController().navigate(action)
         }
 
-        upCount(holder)
+        holder.binding.ivSold.isVisible = currentItem.isSold == true
+        holder.binding.tvUp.text = currentItem.upCount.toString()
+
     }
 
     override fun getItemCount(): Int {
@@ -60,16 +62,6 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
     fun setNotes(product: List<ProductModel>) {
         this.productList = product
         notifyDataSetChanged()
-    }
-
-    private fun upCount(holder: ProductListHolder) {
-        var upCount = 0
-
-        holder.binding.ivUp.setOnClickListener {
-            upCount++
-            holder.binding.tvUp.isVisible = true
-            holder.binding.tvUp.text = "$upCount"
-        }
     }
 
 }
