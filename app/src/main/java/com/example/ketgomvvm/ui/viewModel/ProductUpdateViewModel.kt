@@ -58,7 +58,4 @@ class ProductUpdateViewModel @Inject constructor(
         }
     }
 
-    companion object {
-        const val DATE_FORMAT = "dd/M/yyyy"
-    }
 }

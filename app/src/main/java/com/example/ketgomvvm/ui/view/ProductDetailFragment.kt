@@ -1,8 +1,6 @@
 package com.example.ketgomvvm.ui.view
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,18 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.ketgomvvm.MainActivity
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentProductDetailBinding
-import com.example.ketgomvvm.ui.datastore.ProductManager
 import com.example.ketgomvvm.ui.viewModel.ProductUpdateViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
@@ -54,7 +47,8 @@ class ProductDetailFragment : Fragment() {
             tvDetailProduct.text = args.currentProduct.productName
             tvDetailDescription.text = args.currentProduct.productDescription
             tvCreatedDate.text = args.currentProduct.createdDate.toString()
-            tvDetailPrice.text = args.currentProduct.productPrice.toString() + " ₺"
+            tvDetailPrice.text =
+                args.currentProduct.productPrice.toString() + getString(R.string.tl)
             tvDetailLocation.text = args.currentProduct.sellingLocation
             tvDetailCondition.text = args.currentProduct.productStatus
             tvDetailsUp.text = args.currentProduct.upCount.toString()
@@ -64,11 +58,10 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun clickedThumbsUp() {
-        var upCount = 0
         _binding.ivUp.setOnClickListener {
-            upCount++
+            UP_COUNT_START++
             _binding.tvDetailsUp.isVisible = true
-            _binding.tvDetailsUp.text = "$upCount"
+            _binding.tvDetailsUp.text = "$UP_COUNT_START"
             _viewModel.updateProductById(
                 id = args.currentProduct.id!!,
                 upCount = _binding.tvDetailsUp.text.toString().toInt()
@@ -84,6 +77,10 @@ class ProductDetailFragment : Fragment() {
                 )
             findNavController().navigate(action)
         }
+    }
+
+    companion object {
+        var UP_COUNT_START = 0
     }
 
 }

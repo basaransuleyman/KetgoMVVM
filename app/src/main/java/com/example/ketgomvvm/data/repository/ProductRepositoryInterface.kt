@@ -2,7 +2,6 @@ package com.example.ketgomvvm.data.repository
 
 import androidx.lifecycle.LiveData
 import com.example.ketgomvvm.data.model.ProductModel
-import dagger.hilt.android.AndroidEntryPoint
 
 interface ProductRepositoryInterface {
 

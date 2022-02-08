@@ -41,13 +41,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         super.onCreate(savedInstanceState)
 
         _binding = ActivityMapsBinding.inflate(layoutInflater)
+        _fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        _productManager = ProductManager(applicationContext)
         setContentView(_binding.root)
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        _fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        _productManager = ProductManager(applicationContext)
     }
 
 
@@ -61,12 +60,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         _binding.btnSaveLocation.setOnClickListener {
             _binding.tvAddress.text = getAddress(currentLatLong.latitude, currentLatLong.longitude)
-
             lifecycleScope.launch {
                 _productManager.storeProductSellingData(_binding.tvAddress.text.toString())
             }
         }
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -101,15 +98,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
     }
 
-    private fun getAddress(lat: Double, lng: Double): String? {
+    private fun getAddress(lat: Double, lng: Double): String {
         val geocoder = Geocoder(this, Locale.getDefault())
-        val address = geocoder.getFromLocation(lat, lng, 1)
-        return address[0].getAddressLine(0).toString()
+        val address = geocoder.getFromLocation(lat, lng, MAX_ADDRESS_RESULT)
+        return address[FIRST_ADDRESS_INDEX].getAddressLine(FIRST_ADDRESS_INDEX).toString()
     }
 
     override fun onMarkerClick(p0: Marker) = false
 
     companion object {
+        private const val FIRST_ADDRESS_INDEX = 0
+        private const val MAX_ADDRESS_RESULT = 1
         private const val REQUEST_CODE_MAP = 1
         private const val CAMERA_ZOOM = 12f
         private const val FIRST_LONG_AND_LAT = 0.0

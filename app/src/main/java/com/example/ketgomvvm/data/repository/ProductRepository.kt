@@ -3,7 +3,6 @@ package com.example.ketgomvvm.data.repository
 import androidx.lifecycle.LiveData
 import com.example.ketgomvvm.data.dao.ProductDao
 import com.example.ketgomvvm.data.model.ProductModel
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 class ProductRepository @Inject constructor(

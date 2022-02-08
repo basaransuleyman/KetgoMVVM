@@ -1,6 +1,5 @@
 package com.example.ketgomvvm.ui.view
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -9,8 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,10 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentEditProductBinding
-import com.example.ketgomvvm.databinding.FragmentProductDetailBinding
-import com.example.ketgomvvm.ui.viewModel.ProductCreateViewModel
 import com.example.ketgomvvm.ui.viewModel.ProductUpdateViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -57,7 +51,7 @@ class ProductUpdateFragment : Fragment() {
             updateProduct()
             Toast.makeText(
                 context,
-                "Updated  ${args.currentProduct.productName}",
+                getString(R.string.product_update),
                 Toast.LENGTH_LONG
             ).show()
             findNavController().navigate(R.id.action_editProductFragment_to_listingFragment)
@@ -69,7 +63,7 @@ class ProductUpdateFragment : Fragment() {
             _viewModel.deleteProductById(args.currentProduct.id!!)
             Toast.makeText(
                 context,
-                "Delete Success ${args.currentProduct.productName}",
+                getString(R.string.product_delete),
                 Toast.LENGTH_LONG
             ).show()
             findNavController().navigate(R.id.action_editProductFragment_to_listingFragment)
@@ -112,7 +106,7 @@ class ProductUpdateFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE) {
+        if (requestCode == PICK_IMAGE_CODE) {
             data?.let {
                 updateNoteImage(it.data)
             }
@@ -122,12 +116,12 @@ class ProductUpdateFragment : Fragment() {
     private fun updateImage() {
         _binding.ivUpdateProduct.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, PICK_IMAGE)
+            startActivityForResult(gallery, PICK_IMAGE_CODE)
         }
     }
 
     companion object {
-        const val PICK_IMAGE = 1
+        const val PICK_IMAGE_CODE = 1
     }
 
 }

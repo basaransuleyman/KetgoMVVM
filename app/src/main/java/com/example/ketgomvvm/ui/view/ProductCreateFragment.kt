@@ -42,8 +42,12 @@ class ProductCreateFragment : Fragment() {
     }
 
     private fun addProductToDatabase() {
-        if (_binding.etCreateTitle.text.toString() == "") {
-            Toast.makeText(requireContext(), "error to add db", Toast.LENGTH_SHORT).show()
+        if (_binding.etCreateTitle.text.toString() == getString(R.string.empty_string)) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.error_add_data_to_db),
+                Toast.LENGTH_SHORT
+            ).show()
         } else {
             _viewModel.addProduct(
                 productName = _binding.etCreateTitle.text.toString(),
@@ -55,7 +59,7 @@ class ProductCreateFragment : Fragment() {
             )
             Toast.makeText(
                 requireContext(),
-                "Created ${_binding.etCreateTitle.text.toString()}",
+                getString(R.string.product_created),
                 Toast.LENGTH_SHORT
             ).show()
             findNavController().navigate(R.id.action_createProductFragment_to_listingFragment)
@@ -84,7 +88,7 @@ class ProductCreateFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE) {
+        if (requestCode == PICK_IMAGE_CODE) {
             data?.let {
                 addNoteImage(it.data)
             }
@@ -94,7 +98,7 @@ class ProductCreateFragment : Fragment() {
     private fun addImage() {
         _binding.ivCreateProduct.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, PICK_IMAGE)
+            startActivityForResult(gallery,PICK_IMAGE_CODE)
         }
     }
 
@@ -112,17 +116,17 @@ class ProductCreateFragment : Fragment() {
 
     private fun checkBoxControl(): String {
         when {
-            _binding.cbCreateFair.isChecked -> return "Fair"
-            _binding.cbCreateGood.isChecked -> return "Good"
-            _binding.cbCreateLikeNew.isChecked -> return "Like New"
-            _binding.cbCreateNew.isChecked -> return "New"
-            _binding.cbCreatePoor.isChecked -> return "Poor"
+            _binding.cbCreateFair.isChecked -> return getString(R.string.condition_fair)
+            _binding.cbCreateGood.isChecked -> return getString(R.string.condition_good)
+            _binding.cbCreateLikeNew.isChecked -> return getString(R.string.like_new)
+            _binding.cbCreateNew.isChecked -> return getString(R.string.condition_new)
+            _binding.cbCreatePoor.isChecked -> return getString(R.string.condition_poor)
         }
-        return "Wrong"
+        return getString(R.string.warning)
     }
 
     companion object {
-        const val PICK_IMAGE = 1
+        const val PICK_IMAGE_CODE = 1
     }
 
 }
