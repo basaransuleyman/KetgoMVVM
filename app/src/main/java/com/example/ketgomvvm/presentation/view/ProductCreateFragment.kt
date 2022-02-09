@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.ui.view
+package com.example.ketgomvvm.presentation.view
 
 import android.content.Intent
 import android.net.Uri
@@ -15,8 +15,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentCreateProductBinding
-import com.example.ketgomvvm.ui.datastore.ProductManager
-import com.example.ketgomvvm.ui.viewModel.ProductCreateViewModel
+import com.example.ketgomvvm.presentation.datastore.ProductManager
+import com.example.ketgomvvm.presentation.viewModel.ProductCreateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.ui.view
+package com.example.ketgomvvm.presentation.view
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -10,7 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.ActivityMapsBinding
-import com.example.ketgomvvm.ui.datastore.ProductManager
+import com.example.ketgomvvm.presentation.datastore.ProductManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 

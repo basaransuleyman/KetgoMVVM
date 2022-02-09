@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.ui.viewModel
+package com.example.ketgomvvm.presentation.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.ui.view
+package com.example.ketgomvvm.presentation.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentProductDetailBinding
-import com.example.ketgomvvm.ui.viewModel.ProductUpdateViewModel
+import com.example.ketgomvvm.presentation.viewModel.ProductUpdateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

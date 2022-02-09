@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.ui.view
+package com.example.ketgomvvm.presentation.view
 
 import android.content.Intent
 import android.net.Uri
@@ -15,7 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentEditProductBinding
-import com.example.ketgomvvm.ui.viewModel.ProductUpdateViewModel
+import com.example.ketgomvvm.presentation.viewModel.ProductUpdateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listingFragment"
-        android:name="com.example.ketgomvvm.ui.view.ListingFragment"
+        android:name="com.example.ketgomvvm.presentation.view.ListingFragment"
         android:label="fragment_listing"
         tools:layout="@layout/fragment_listing">
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/createProductFragment"
-        android:name="com.example.ketgomvvm.ui.view.ProductCreateFragment"
+        android:name="com.example.ketgomvvm.presentation.view.ProductCreateFragment"
         android:label="fragment_create_product"
         tools:layout="@layout/fragment_create_product">
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
-        android:name="com.example.ketgomvvm.ui.view.ProductDetailFragment"
+        android:name="com.example.ketgomvvm.presentation.view.ProductDetailFragment"
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail">
         <argument
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/editProductFragment"
-        android:name="com.example.ketgomvvm.ui.view.ProductUpdateFragment"
+        android:name="com.example.ketgomvvm.presentation.view.ProductUpdateFragment"
         android:label="fragment_edit_product"
         tools:layout="@layout/fragment_edit_product">
         <action
@@ -72,6 +72,6 @@
     </fragment>
     <activity
         android:id="@+id/mapsActivity"
-        android:name="com.example.ketgomvvm.ui.view.MapsActivity"
+        android:name="com.example.ketgomvvm.presentation.view.MapsActivity"
         android:label="MapsActivity" />
 </navigation>

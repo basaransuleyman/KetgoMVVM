@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.ui.viewModel
+package com.example.ketgomvvm.presentation.viewModel
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
@@ -14,20 +14,18 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductUpdateViewModel @Inject constructor(
-    var repository: ProductRepositoryInterface
-) : ViewModel() {
+class ProductCreateViewModel @Inject constructor(private val repository: ProductRepositoryInterface) :
+    ViewModel() {
 
     @SuppressLint("SimpleDateFormat")
-    val dateFormat = SimpleDateFormat(ProductCreateViewModel.DATE_FORMAT)
+    val dateFormat = SimpleDateFormat(DATE_FORMAT)
     val noteImageUrl = MutableLiveData<String>()
 
-    fun updateProduct(
-        productId: Int,
+    fun addProduct(
         productName: String,
         productPrice: Int,
         productDescription: String? = null,
-        productStatus: String? = null,
+        productStatus: String,
         sellingLocation: String,
         productImage: String? = null,
     ) {
@@ -38,24 +36,14 @@ class ProductUpdateViewModel @Inject constructor(
             productStatus = productStatus,
             sellingLocation = sellingLocation,
             productImage = productImage,
-            createdDate = dateFormat.format(Date()),
-            id = productId
+            createdDate = dateFormat.format(Date())
         )
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateProduct(product)
+            repository.addProduct(product)
         }
     }
 
-    fun deleteProductById(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteProductById(id)
-        }
+    companion object {
+        const val DATE_FORMAT = "dd/M/yyyy"
     }
-
-    fun updateProductById(id: Int, isSold: Boolean? = false, upCount: Int? = 0) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateProductById(id, isSold, upCount)
-        }
-    }
-
 }

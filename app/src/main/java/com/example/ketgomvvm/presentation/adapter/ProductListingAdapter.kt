@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.ui.adapter
+package com.example.ketgomvvm.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,8 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.data.model.ProductModel
 import com.example.ketgomvvm.databinding.ListingItemsBinding
-import com.example.ketgomvvm.ui.view.ListingFragmentDirections
-import java.util.*
+import com.example.ketgomvvm.presentation.view.ListingFragmentDirections
 
 class ProductListingAdapter(private var productList: List<ProductModel>) :
     RecyclerView.Adapter<ProductListingAdapter.ProductListHolder>() {
