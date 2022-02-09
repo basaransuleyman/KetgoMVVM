@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.presentation.datastore
+package com.example.ketgomvvm.data.datastore
 
 import android.content.Context
 import androidx.datastore.core.DataStore
