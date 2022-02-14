@@ -1,16 +1,16 @@
 package com.example.ketgomvvm.presentation.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.ketgomvvm.data.model.ProductModel
 import com.example.ketgomvvm.data.repository.ProductRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class ProductListingViewModel @Inject constructor(var repository: ProductRepositoryInterface) :
     ViewModel() {
 
-    val getAllProducts: LiveData<List<ProductModel>> = repository.getAllProducts()
+    val getAllProducts: Flow<List<ProductModel>> = repository.getAllProducts()
 
 }

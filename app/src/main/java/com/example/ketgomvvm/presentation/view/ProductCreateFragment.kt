@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentCreateProductBinding
-import com.example.ketgomvvm.presentation.datastore.ProductManager
+import com.example.ketgomvvm.data.datastore.ProductManager
 import com.example.ketgomvvm.presentation.viewModel.ProductCreateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ketgomvvm.R
@@ -44,8 +45,10 @@ class ListingFragment : Fragment() {
     }
 
     private fun readNote() {
-        _viewModel.getAllProducts.observe(viewLifecycleOwner) { products ->
-            _productAdapter.setNotes(products)
+        lifecycleScope.launchWhenCreated {
+            _viewModel.getAllProducts.collect { products ->
+                _productAdapter.setNotes(products)
+            }
         }
     }
 
