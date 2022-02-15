@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
@@ -18,6 +19,7 @@ import com.example.ketgomvvm.databinding.FragmentCreateProductBinding
 import com.example.ketgomvvm.data.datastore.ProductManager
 import com.example.ketgomvvm.presentation.viewModel.ProductCreateViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ProductCreateFragment : Fragment() {
@@ -67,12 +69,13 @@ class ProductCreateFragment : Fragment() {
     }
 
     private fun observeFromDatastore() {
-        _productManager.productSellingLocationFlow.asLiveData()
-            .observe(viewLifecycleOwner) { location ->
-                location?.let {
+        lifecycleScope.launchWhenStarted {
+            _productManager.productSellingLocationFlow.collect { location ->
+                location.let {
                     _binding.etCreateLocation.setText(location)
                 }
             }
+        }
     }
 
     private fun openGoogleMaps() {
@@ -98,7 +101,7 @@ class ProductCreateFragment : Fragment() {
     private fun addImage() {
         _binding.ivCreateProduct.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery,PICK_IMAGE_CODE)
+            startActivityForResult(gallery, PICK_IMAGE_CODE)
         }
     }
 
