@@ -15,7 +15,7 @@
         map:layout_constraintHorizontal_bias="0.0"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toBottomOf="@+id/tvAddress"
-        tools:context=".presentation.view.MapsActivity" />
+        tools:context=".ui.view.MapsActivity" />
 
     <Button
         android:id="@+id/btnSaveLocation"

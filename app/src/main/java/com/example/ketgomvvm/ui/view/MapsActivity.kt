@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.presentation.view
+package com.example.ketgomvvm.ui.view
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -37,18 +37,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     var startLatitude = FIRST_LONG_AND_LAT
     var startLongitude = FIRST_LONG_AND_LAT
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    private fun initialize(){
         _binding = ActivityMapsBinding.inflate(layoutInflater)
         _fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         _productManager = ProductManager(applicationContext)
         setContentView(_binding.root)
-
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
     }
 
+    private fun getAddress(lat: Double, lng: Double): String {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        val address = geocoder.getFromLocation(lat, lng, MAX_ADDRESS_RESULT)
+        return address[FIRST_ADDRESS_INDEX].getAddressLine(FIRST_ADDRESS_INDEX).toString()
+    }
 
     private fun markerOnMap(currentLatLong: LatLng) {
         val markerOptions = MarkerOptions().position(currentLatLong)
@@ -64,13 +64,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 _productManager.storeProductSellingData(_binding.tvAddress.text.toString())
             }
         }
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        _mMap = googleMap
-        _mMap.uiSettings.isZoomControlsEnabled = true
-        _mMap.setOnMarkerClickListener(this)
-        setupMap()
     }
 
     private fun setupMap() {
@@ -98,13 +91,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
     }
 
-    private fun getAddress(lat: Double, lng: Double): String {
-        val geocoder = Geocoder(this, Locale.getDefault())
-        val address = geocoder.getFromLocation(lat, lng, MAX_ADDRESS_RESULT)
-        return address[FIRST_ADDRESS_INDEX].getAddressLine(FIRST_ADDRESS_INDEX).toString()
+    override fun onMarkerClick(p0: Marker) = false
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        _mMap = googleMap
+        _mMap.uiSettings.isZoomControlsEnabled = true
+        _mMap.setOnMarkerClickListener(this)
+        setupMap()
     }
 
-    override fun onMarkerClick(p0: Marker) = false
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initialize()
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
 
     companion object {
         private const val FIRST_ADDRESS_INDEX = 0

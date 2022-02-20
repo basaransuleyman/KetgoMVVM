@@ -8,6 +8,7 @@ import javax.inject.Inject
 class ProductRepository @Inject constructor(
     private val productDao: ProductDao
 ) : ProductRepositoryInterface {
+
     override fun getAllProducts(): Flow<List<ProductModel>> {
         return productDao.getAllProducts()
     }

@@ -15,9 +15,9 @@ class ProductManager(val context: Context) {
 
     private val myDatastore: DataStore<Preferences> = context.datastore
 
-    companion object {
-        val SELLING_LOCATION = stringPreferencesKey("SELLING_LOCATION")
-     }
+    val productSellingLocationFlow: Flow<String> = myDatastore.data.map {
+        it[SELLING_LOCATION] ?: EMPTY_STRING
+    }
 
     suspend fun storeProductSellingData(sellingLocation: String) {
         myDatastore.edit { preferences ->
@@ -25,8 +25,9 @@ class ProductManager(val context: Context) {
         }
     }
 
-    val productSellingLocationFlow: Flow<String> = myDatastore.data.map {
-        it[SELLING_LOCATION] ?: ""
+    companion object {
+        val SELLING_LOCATION = stringPreferencesKey("SELLING_LOCATION")
+        const val EMPTY_STRING = ""
     }
 
 }

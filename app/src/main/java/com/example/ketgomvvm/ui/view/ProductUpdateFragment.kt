@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.presentation.view
+package com.example.ketgomvvm.ui.view
 
 import android.content.Intent
 import android.net.Uri
@@ -15,7 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentEditProductBinding
-import com.example.ketgomvvm.presentation.viewModel.ProductUpdateViewModel
+import com.example.ketgomvvm.ui.viewModel.ProductUpdateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,20 +24,7 @@ class ProductUpdateFragment : Fragment() {
     private lateinit var _binding: FragmentEditProductBinding
     private val args by navArgs<ProductDetailFragmentArgs>()
     private val _viewModel by viewModels<ProductUpdateViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentEditProductBinding.inflate(inflater, container, false)
-        putBindingData()
-        closeUpdateProductFragment()
-        clickDeleteProductButton()
-        clickUpdateProduct()
-        updateImage()
-        makeAsSold()
-        return _binding.root
-    }
+    private val pickImageCode = 0
 
     private fun makeAsSold() {
         _binding.btnSold.setOnClickListener {
@@ -48,7 +35,7 @@ class ProductUpdateFragment : Fragment() {
 
     private fun clickUpdateProduct() {
         _binding.btnSave.setOnClickListener {
-            updateProduct()
+            observeViewModel()
             Toast.makeText(
                 context,
                 getString(R.string.product_update),
@@ -67,7 +54,6 @@ class ProductUpdateFragment : Fragment() {
                 Toast.LENGTH_LONG
             ).show()
             findNavController().navigate(R.id.action_editProductFragment_to_listingFragment)
-
         }
     }
 
@@ -88,7 +74,7 @@ class ProductUpdateFragment : Fragment() {
         }
     }
 
-    private fun updateProduct() {
+    private fun observeViewModel() {
         _viewModel.updateProduct(
             productId = args.currentProduct.id!!,
             productName = _binding.etUpdateTitle.text.toString(),
@@ -104,24 +90,35 @@ class ProductUpdateFragment : Fragment() {
         _viewModel.noteImageUrl.value = uri.toString()
     }
 
+    private fun updateImage() {
+        _binding.ivUpdateProduct.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, pickImageCode)
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_CODE) {
+        if (requestCode == pickImageCode) {
             data?.let {
                 updateNoteImage(it.data)
             }
         }
     }
 
-    private fun updateImage() {
-        _binding.ivUpdateProduct.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, PICK_IMAGE_CODE)
-        }
-    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentEditProductBinding.inflate(inflater, container, false)
 
-    companion object {
-        const val PICK_IMAGE_CODE = 1
+        putBindingData()
+        closeUpdateProductFragment()
+        clickDeleteProductButton()
+        clickUpdateProduct()
+        updateImage()
+        makeAsSold()
+        return _binding.root
     }
 
 }

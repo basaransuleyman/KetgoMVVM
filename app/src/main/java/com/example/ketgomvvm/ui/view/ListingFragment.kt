@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.presentation.view
+package com.example.ketgomvvm.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.data.model.ProductModel
 import com.example.ketgomvvm.databinding.FragmentListingBinding
-import com.example.ketgomvvm.presentation.adapter.ProductListingAdapter
-import com.example.ketgomvvm.presentation.viewModel.ProductListingViewModel
+import com.example.ketgomvvm.ui.adapter.ProductListingAdapter
+import com.example.ketgomvvm.ui.viewModel.ProductListingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.ArrayList
 
@@ -31,6 +31,7 @@ class ListingFragment : Fragment() {
     ): View {
         _binding = FragmentListingBinding.inflate(inflater, container, false)
         _productAdapter = ProductListingAdapter(_productArrayList)
+
         bottomTabNavigation()
         bindingRecyclerView()
         readNote()
@@ -62,4 +63,5 @@ class ListingFragment : Fragment() {
             }
         }
     }
+
 }

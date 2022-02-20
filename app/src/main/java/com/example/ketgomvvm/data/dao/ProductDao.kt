@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
+
     @Query("SELECT * FROM products_table ORDER BY id DESC")
     fun getAllProducts(): Flow<List<ProductModel>>
 
@@ -20,5 +21,6 @@ interface ProductDao {
 
     @Query("UPDATE products_table SET isSold= :isSold,upCount= :upCount WHERE id= :id ")
     suspend fun updateProductById(id: Int, isSold: Boolean?, upCount: Int?)
+
 }
 
