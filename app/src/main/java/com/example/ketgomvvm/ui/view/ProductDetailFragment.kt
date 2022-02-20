@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.presentation.view
+package com.example.ketgomvvm.ui.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentProductDetailBinding
-import com.example.ketgomvvm.presentation.viewModel.ProductUpdateViewModel
+import com.example.ketgomvvm.ui.viewModel.ProductUpdateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,22 +22,39 @@ class ProductDetailFragment : Fragment() {
     private lateinit var _binding: FragmentProductDetailBinding
     private val args by navArgs<ProductDetailFragmentArgs>()
     private val _viewModel by viewModels<ProductUpdateViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
-        putBindingData()
-        clickUpdateButton()
-        closeProductDetailFragment()
-        clickedThumbsUp()
-        return _binding.root
-    }
+    private var upCountStart = 0
 
     private fun closeProductDetailFragment() {
         _binding.ivClose.setOnClickListener {
             findNavController().navigate(R.id.action_productDetailFragment_to_listingFragment)
+        }
+    }
+
+    private fun clickedThumbsUp() {
+        _binding.ivUp.setOnClickListener {
+            upCountStart++
+            with(_binding) {
+                tvDetailsUp.isVisible = true
+                tvDetailsUp.text = "$upCountStart"
+            }
+            observeViewModel()
+        }
+    }
+
+    private fun observeViewModel() {
+        _viewModel.updateProductById(
+            id = args.currentProduct.id!!,
+            upCount = _binding.tvDetailsUp.text.toString().toInt()
+        )
+    }
+
+    private fun clickUpdateButton() {
+        _binding.ivUpdateProductButton.setOnClickListener {
+            val action =
+                ProductDetailFragmentDirections.actionProductDetailFragmentToEditProductFragment(
+                    args.currentProduct
+                )
+            findNavController().navigate(action)
         }
     }
 
@@ -57,30 +74,17 @@ class ProductDetailFragment : Fragment() {
         }
     }
 
-    private fun clickedThumbsUp() {
-        _binding.ivUp.setOnClickListener {
-            UP_COUNT_START++
-            _binding.tvDetailsUp.isVisible = true
-            _binding.tvDetailsUp.text = "$UP_COUNT_START"
-            _viewModel.updateProductById(
-                id = args.currentProduct.id!!,
-                upCount = _binding.tvDetailsUp.text.toString().toInt()
-            )
-        }
-    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
 
-    private fun clickUpdateButton() {
-        _binding.ivUpdateProductButton.setOnClickListener {
-            val action =
-                ProductDetailFragmentDirections.actionProductDetailFragmentToEditProductFragment(
-                    args.currentProduct
-                )
-            findNavController().navigate(action)
-        }
-    }
-
-    companion object {
-        var UP_COUNT_START = 0
+        putBindingData()
+        clickUpdateButton()
+        closeProductDetailFragment()
+        clickedThumbsUp()
+        return _binding.root
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.presentation.viewModel
+package com.example.ketgomvvm.ui.viewModel
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
@@ -17,8 +17,9 @@ import javax.inject.Inject
 class ProductCreateViewModel @Inject constructor(private val repository: ProductRepositoryInterface) :
     ViewModel() {
 
+    private val exampleDateFormat = "dd/M/yyyy"
     @SuppressLint("SimpleDateFormat")
-    val dateFormat = SimpleDateFormat(DATE_FORMAT)
+    val dateFormat = SimpleDateFormat(exampleDateFormat)
     val noteImageUrl = MutableLiveData<String>()
 
     fun addProduct(
@@ -27,7 +28,7 @@ class ProductCreateViewModel @Inject constructor(private val repository: Product
         productDescription: String? = null,
         productStatus: String,
         sellingLocation: String,
-        productImage: String? = null,
+        productImage: String? = null
     ) {
         val product = ProductModel(
             productName = productName,
@@ -43,7 +44,4 @@ class ProductCreateViewModel @Inject constructor(private val repository: Product
         }
     }
 
-    companion object {
-        const val DATE_FORMAT = "dd/M/yyyy"
-    }
 }

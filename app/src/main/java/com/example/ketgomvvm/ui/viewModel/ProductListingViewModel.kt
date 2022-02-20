@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.presentation.viewModel
+package com.example.ketgomvvm.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.example.ketgomvvm.data.model.ProductModel
@@ -11,6 +11,7 @@ import javax.inject.Inject
 class ProductListingViewModel @Inject constructor(var repository: ProductRepositoryInterface) :
     ViewModel() {
 
-    val getAllProducts: Flow<List<ProductModel>> = repository.getAllProducts()
+    val getAllProducts: Flow<List<ProductModel>>
+        get() = repository.getAllProducts()
 
 }

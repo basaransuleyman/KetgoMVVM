@@ -1,4 +1,4 @@
-package com.example.ketgomvvm.presentation.adapter
+package com.example.ketgomvvm.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.data.model.ProductModel
 import com.example.ketgomvvm.databinding.ListingItemsBinding
-import com.example.ketgomvvm.presentation.view.ListingFragmentDirections
+import com.example.ketgomvvm.ui.view.ListingFragmentDirections
 
 class ProductListingAdapter(private var productList: List<ProductModel>) :
     RecyclerView.Adapter<ProductListingAdapter.ProductListHolder>() {
@@ -32,30 +32,26 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
     override fun onBindViewHolder(holder: ProductListHolder, position: Int) {
 
         val currentItem = productList[position]
+        val action =
+            ListingFragmentDirections.actionListingFragmentToProductDetailFragment(currentItem)
 
         holder.binding.product = currentItem
         Glide.with(holder.itemView.context).load(currentItem.productImage.toString())
             .into(holder.binding.ivProduct)
 
-        val action =
-            ListingFragmentDirections.actionListingFragmentToProductDetailFragment(currentItem)
-
         holder.itemView.setOnClickListener {
             holder.itemView.findNavController().navigate(action)
         }
 
-        holder.binding.ivSold.isVisible = currentItem.isSold == true
-        holder.binding.tvUp.text = currentItem.upCount.toString()
-
+        with(holder.binding){
+            ivSold.isVisible = currentItem.isSold == true
+            tvUp.text = currentItem.upCount.toString()
+        }
     }
 
-    override fun getItemCount(): Int {
-        return productList.size
-    }
+    override fun getItemCount(): Int { return productList.size }
 
-    class ProductListHolder(val binding: ListingItemsBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
+    class ProductListHolder(val binding: ListingItemsBinding) : RecyclerView.ViewHolder(binding.root)
 
     @SuppressLint("NotifyDataSetChanged")
     fun setNotes(product: List<ProductModel>) {

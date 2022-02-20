@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.ProductCreateFragment">
+    tools:context=".ui.view.ProductCreateFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -104,7 +104,7 @@
 
     <CheckBox
         android:id="@+id/cbCreateNew"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:text="@string/a_new"

@@ -2,7 +2,6 @@ package com.example.ketgomvvm.data.repository
 
 import com.example.ketgomvvm.data.model.ProductModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 
 interface ProductRepositoryInterface {
 
