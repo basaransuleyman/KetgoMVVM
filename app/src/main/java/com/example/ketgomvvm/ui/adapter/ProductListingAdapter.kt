@@ -16,6 +16,15 @@ import com.example.ketgomvvm.ui.view.ListingFragmentDirections
 class ProductListingAdapter(private var productList: List<ProductModel>) :
     RecyclerView.Adapter<ProductListingAdapter.ProductListHolder>() {
 
+    class ProductListHolder(val binding: ListingItemsBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setNotes(product: List<ProductModel>) {
+        this.productList = product
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -43,20 +52,14 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
             holder.itemView.findNavController().navigate(action)
         }
 
-        with(holder.binding){
+        with(holder.binding) {
             ivSold.isVisible = currentItem.isSold == true
             tvUp.text = currentItem.upCount.toString()
         }
     }
 
-    override fun getItemCount(): Int { return productList.size }
-
-    class ProductListHolder(val binding: ListingItemsBinding) : RecyclerView.ViewHolder(binding.root)
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setNotes(product: List<ProductModel>) {
-        this.productList = product
-        notifyDataSetChanged()
+    override fun getItemCount(): Int {
+        return productList.size
     }
 
 }

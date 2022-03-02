@@ -15,17 +15,17 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.FragmentCreateProductBinding
-import com.example.ketgomvvm.data.datastore.ProductManager
+import com.example.ketgomvvm.data.preferences.ProductManager
 import com.example.ketgomvvm.ui.viewModel.ProductCreateViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProductCreateFragment : Fragment() {
 
-    private lateinit var _binding: FragmentCreateProductBinding
     private val _viewModel by viewModels<ProductCreateViewModel>()
+
+    private lateinit var _binding: FragmentCreateProductBinding
     private lateinit var _productManager: ProductManager
-    private val pickImageCode = 1
 
     private fun addProductToDatabase() {
         if (_binding.etCreateTitle.text.toString() == getString(R.string.empty_string)) {
@@ -80,7 +80,7 @@ class ProductCreateFragment : Fragment() {
     private fun addImage() {
         _binding.ivCreateProduct.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, pickImageCode)
+            startActivityForResult(gallery, PICK_IMAGE_CODE)
         }
     }
 
@@ -98,11 +98,12 @@ class ProductCreateFragment : Fragment() {
 
     private fun checkBoxControl(): String {
         when {
-            _binding.cbCreateFair.isChecked -> return getString(R.string.condition_fair)
-            _binding.cbCreateGood.isChecked -> return getString(R.string.condition_good)
-            _binding.cbCreateLikeNew.isChecked -> return getString(R.string.like_new)
-            _binding.cbCreateNew.isChecked -> return getString(R.string.condition_new)
-            _binding.cbCreatePoor.isChecked -> return getString(R.string.condition_poor)
+            _binding.cbCreateFair.isChecked -> return CheckedTextEnum.CONDITION_FAIR.value
+            _binding.cbCreateGood.isChecked -> return CheckedTextEnum.CONDITION_GOOD.value
+            _binding.cbCreateLikeNew.isChecked -> return CheckedTextEnum.CONDITION_ANEW.value
+            _binding.cbCreateNew.isChecked -> return CheckedTextEnum.CONDITION_NEW.value
+            _binding.cbCreatePoor.isChecked -> return CheckedTextEnum.CONDITION_POOR.value
+
         }
         return getString(R.string.warning)
     }
@@ -124,11 +125,23 @@ class ProductCreateFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == pickImageCode) {
+        if (requestCode == PICK_IMAGE_CODE) {
             data?.let {
                 addNoteImage(it.data)
             }
         }
+    }
+
+    enum class CheckedTextEnum(val value: String) {
+        CONDITION_FAIR("Fair"),
+        CONDITION_GOOD("Good"),
+        CONDITION_ANEW("Like a New"),
+        CONDITION_NEW("New"),
+        CONDITION_POOR("Poor"),
+    }
+
+    companion object{
+        const val PICK_IMAGE_CODE = 1
     }
 
 }

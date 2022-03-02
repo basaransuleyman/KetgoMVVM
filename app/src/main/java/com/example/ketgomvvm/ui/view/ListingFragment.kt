@@ -22,7 +22,9 @@ class ListingFragment : Fragment() {
 
     private lateinit var _binding: FragmentListingBinding
     private lateinit var _productAdapter: ProductListingAdapter
+
     private val _productArrayList: ArrayList<ProductModel> = ArrayList()
+
     private val _viewModel by viewModels<ProductListingViewModel>()
 
     override fun onCreateView(
@@ -47,7 +49,7 @@ class ListingFragment : Fragment() {
 
     private fun readNote() {
         lifecycleScope.launchWhenCreated {
-            _viewModel.getAllProducts.collect { products ->
+            _viewModel.getAllProducts.observe(viewLifecycleOwner) { products ->
                 _productAdapter.setNotes(products)
             }
         }

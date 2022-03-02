@@ -3,7 +3,6 @@ package com.example.ketgomvvm.di
 import android.content.Context
 import androidx.room.Room
 import com.example.ketgomvvm.data.db.ProductDatabase
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,15 +1,15 @@
 package com.example.ketgomvvm.data.repository
 
+import androidx.lifecycle.LiveData
 import com.example.ketgomvvm.data.dao.ProductDao
 import com.example.ketgomvvm.data.model.ProductModel
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ProductRepository @Inject constructor(
     private val productDao: ProductDao
 ) : ProductRepositoryInterface {
 
-    override fun getAllProducts(): Flow<List<ProductModel>> {
+    override fun getAllProducts(): LiveData<List<ProductModel>> {
         return productDao.getAllProducts()
     }
 
