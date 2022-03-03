@@ -1,11 +1,11 @@
 package com.example.ketgomvvm.data.repository
 
+import androidx.lifecycle.LiveData
 import com.example.ketgomvvm.data.model.ProductModel
-import kotlinx.coroutines.flow.Flow
 
 interface ProductRepositoryInterface {
 
-    fun getAllProducts(): Flow<List<ProductModel>>
+    fun getAllProducts(): LiveData<List<ProductModel>>
 
     suspend fun addProduct(product: ProductModel)
 

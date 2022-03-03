@@ -10,10 +10,9 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.ketgomvvm.R
 import com.example.ketgomvvm.databinding.ActivityMapsBinding
-import com.example.ketgomvvm.data.datastore.ProductManager
+import com.example.ketgomvvm.data.preferences.ProductManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
