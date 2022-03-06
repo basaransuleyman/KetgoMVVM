@@ -1,6 +1,6 @@
 # KetgoMVVM
 
-In this app you can add and sell products, update and delete your product and if your product is sold you can use sold button choice. In this clone app use your location for selling location.
+In this app you can add and sell products, update and delete your product and if your product is sold you can use sold button choice. In this app use your location for selling location. I 
 
 # Which technologies did I use in  my project 
 
@@ -27,6 +27,11 @@ In this app you can add and sell products, update and delete your product and if
 [Glide](https://github.com/bumptech/glide) for Images 
 
 GSON Annotations(Serialized,Parcelize) for Networking
+
+<b>Some Application Screen Shots</b>
+
+![SS1](https://i.ibb.co/BCDmgbZ/Screen-Shot-2022-03-06-at-21-04-1.png)
+![SS2](https://i.ibb.co/hKg5x5j/Screen-Shot-2022-03-06-at-21-06-41.png)
 
 <b>Design Pattern  MVVM</b>
 
