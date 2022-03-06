@@ -41,9 +41,9 @@ class ListingFragment : Fragment() {
     }
 
     private fun bindingRecyclerView() {
-        with(_binding) {
-            rcListing.layoutManager = LinearLayoutManager(context)
-            rcListing.adapter = _productAdapter
+        with(_binding.rcListing) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = _productAdapter
         }
     }
 
