@@ -1,5 +1,7 @@
 # KetgoMVVM
 
+In this app you can add and sell products, update and delete your product and if your product is sold you can use sold button choice. In this clone app use your location for selling location.
+
 # Which technologies did I use in  my project 
 
 [Jetpack Data Store](https://developer.android.com/topic/libraries/architecture/datastore?gclid=CjwKCAiA1JGRBhBSEiwAxXblwfir-tUUG5LQQ2ODg5UwvAnLqhEFhuZJ7TIXrWqxR9PskipFQHB8CBoC2BQQAvD_BwE&gclsrc=aw.ds) for Preferences
