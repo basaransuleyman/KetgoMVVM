@@ -36,33 +36,48 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     var startLatitude = FIRST_LONG_AND_LAT
     var startLongitude = FIRST_LONG_AND_LAT
 
-    private fun initialize(){
+    private fun initialize() {
         _binding = ActivityMapsBinding.inflate(layoutInflater)
         _fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         _productManager = ProductManager(applicationContext)
         setContentView(_binding.root)
     }
 
-    private fun getAddress(lat: Double, lng: Double): String {
+    private fun getAddress(latitude: Double, longitude: Double): String {
         val geocoder = Geocoder(this, Locale.getDefault())
-        val address = geocoder.getFromLocation(lat, lng, MAX_ADDRESS_RESULT)
+        val address = geocoder.getFromLocation(latitude, longitude, MAX_ADDRESS_RESULT)
         return address[FIRST_ADDRESS_INDEX].getAddressLine(FIRST_ADDRESS_INDEX).toString()
     }
 
-    private fun markerOnMap(currentLatLong: LatLng) {
-        val markerOptions = MarkerOptions().position(currentLatLong)
-            .snippet(getAddress(currentLatLong.latitude, currentLatLong.longitude))
-
-        markerOptions.title("$currentLatLong")
-        _mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLatLong))
-        _mMap.addMarker(markerOptions)
-
+    private fun saveLocation(currentLatLong: LatLng) {
         _binding.btnSaveLocation.setOnClickListener {
-            _binding.tvAddress.text = getAddress(currentLatLong.latitude, currentLatLong.longitude)
+            _binding.tvAddress.text =
+                getAddress(latitude = currentLatLong.latitude, longitude = currentLatLong.longitude)
             lifecycleScope.launch {
                 _productManager.storeProductSellingData(_binding.tvAddress.text.toString())
             }
         }
+    }
+
+    private fun markerOnMap(currentLatLong: LatLng) {
+        val markerOptions = MarkerOptions().position(currentLatLong).snippet(
+                getAddress(
+                    latitude = currentLatLong.latitude,
+                    longitude = currentLatLong.longitude
+                )
+            )
+
+        markerOptions.title("$currentLatLong")
+        _mMap.apply {
+            animateCamera(CameraUpdateFactory.newLatLng(currentLatLong))
+            addMarker(markerOptions)
+        }
+        saveLocation(currentLatLong)
+    }
+
+    private fun managedFragment() {
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     private fun setupMap() {
@@ -83,7 +98,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 val currentLatLong = LatLng(location.latitude, location.longitude)
                 markerOnMap(currentLatLong)
                 _mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, CAMERA_ZOOM))
-
                 startLatitude = location.latitude
                 startLongitude = location.longitude
             }
@@ -102,8 +116,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initialize()
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        managedFragment()
     }
 
     companion object {

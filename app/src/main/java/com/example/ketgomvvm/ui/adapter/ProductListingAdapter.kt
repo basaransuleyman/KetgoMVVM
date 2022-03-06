@@ -41,8 +41,7 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
     override fun onBindViewHolder(holder: ProductListHolder, position: Int) {
 
         val currentItem = productList[position]
-        val action =
-            ListingFragmentDirections.actionListingFragmentToProductDetailFragment(currentItem)
+        val action = ListingFragmentDirections.actionListingFragmentToProductDetailFragment(currentItem)
 
         holder.binding.product = currentItem
         Glide.with(holder.itemView.context).load(currentItem.productImage.toString())
@@ -52,6 +51,7 @@ class ProductListingAdapter(private var productList: List<ProductModel>) :
             holder.itemView.findNavController().navigate(action)
         }
 
+        //Triggered when user clicked sold and thumbs up
         with(holder.binding) {
             ivSold.isVisible = currentItem.isSold == true
             tvUp.text = currentItem.upCount.toString()
