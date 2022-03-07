@@ -30,8 +30,12 @@ GSON Annotations(Serialized,Parcelize) for Networking
 
 <b>Some Application Screen Shots</b>
 
-![SS1](https://i.ibb.co/f4DgqQ3/Screen-Shot-2022-03-06-at-21-04-1.png)
-![SS2](https://i.ibb.co/Zz0t1S3/Screen-Shot-2022-03-06-at-22-00.png)
+![SS1](https://i.ibb.co/8bd1JBf/Screen-Shot-2022-03-07-at-10-05.png)
+![SS2](https://i.ibb.co/mT8pMK9/Screen-Shot-2022-03-07-at-10-05-1.png)
+![SS3](https://i.ibb.co/JKGp7jH/Screen-Shot-2022-03-07-at-10-04.png)
+![SS4](https://i.ibb.co/mz2GtJn/Screen-Shot-2022-03-07-at-10-05-2.png)
+![SS5](https://i.ibb.co/8sy8JHg/Screen-Shot-2022-03-07-at-10-03.png)
+
 
 <b>Design Pattern  MVVM</b>
 
