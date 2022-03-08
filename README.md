@@ -37,7 +37,7 @@ GSON Annotations(Serialized,Parcelize) for Networking
 ![SS5](https://i.ibb.co/8sy8JHg/Screen-Shot-2022-03-07-at-10-03.png)
 
 
-<b>Design Pattern  MVVM</b>
+<b>ART :  MVVM</b>
 
 ![Pattern](https://i.ibb.co/6g1hGph/1-hiyp-GQVOat8-W3411-SUa-Tg.png)
 
