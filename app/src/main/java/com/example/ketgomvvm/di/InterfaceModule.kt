@@ -11,5 +11,5 @@ import dagger.hilt.android.components.ViewModelComponent
 @InstallIn(ViewModelComponent::class)
 abstract class  InterfaceModule {
     @Binds
-    abstract fun injectInterface(productInterface : ProductRepository) : ProductRepositoryInterface
+    abstract fun injectInterface (productInterface : ProductRepository) : ProductRepositoryInterface
 }
