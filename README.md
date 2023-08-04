@@ -1,6 +1,6 @@
 # KetgoMVVM
 
-In this app you can add and sell products, update and delete your product and if your product is sold you can use sold button choice. In this app use your location for selling location. I 
+In this app you can add and sell products, update and delete your product and if your product is sold you can use sold button choice. In this app use your location for selling location. 
 
 # Which technologies did I use in  my project 
 
