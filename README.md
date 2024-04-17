@@ -28,7 +28,7 @@ In this app you can add and sell products, update and delete your product and if
 
 GSON Annotations(Serialized,Parcelize) for Networking
 
-<b>Some Application Screen Shots</b>
+<b> Application Screen Shots</b>
 
 ![SS1](https://i.ibb.co/8bd1JBf/Screen-Shot-2022-03-07-at-10-05.png)
 ![SS2](https://i.ibb.co/mT8pMK9/Screen-Shot-2022-03-07-at-10-05-1.png)
